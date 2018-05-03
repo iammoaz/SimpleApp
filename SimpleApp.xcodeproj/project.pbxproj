@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4178CD1C209B28860013256B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1B209B28860013256B /* AppDelegate.swift */; };
-		4178CD1E209B28860013256B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1D209B28860013256B /* ViewController.swift */; };
+		4178CD1E209B28860013256B /* FetchRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1D209B28860013256B /* FetchRequestController.swift */; };
 		4178CD21209B28860013256B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4178CD1F209B28860013256B /* Main.storyboard */; };
-		4178CD23209B28870013256B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4178CD22209B28870013256B /* Assets.xcassets */; };
+		4178CD23209B28870013256B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4178CD22209B28870013256B /* Images.xcassets */; };
 		4178CD26209B28870013256B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4178CD24209B28870013256B /* LaunchScreen.storyboard */; };
 		4178CD31209B28870013256B /* SimpleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD30209B28870013256B /* SimpleAppTests.swift */; };
 /* End PBXBuildFile section */
@@ -28,9 +28,9 @@
 /* Begin PBXFileReference section */
 		4178CD18209B28860013256B /* SimpleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4178CD1B209B28860013256B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4178CD1D209B28860013256B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4178CD1D209B28860013256B /* FetchRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestController.swift; sourceTree = "<group>"; };
 		4178CD20209B28860013256B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4178CD22209B28870013256B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4178CD22209B28870013256B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4178CD25209B28870013256B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4178CD27209B28870013256B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4178CD2C209B28870013256B /* SimpleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,12 +77,13 @@
 		4178CD1A209B28860013256B /* SimpleApp */ = {
 			isa = PBXGroup;
 			children = (
-				4178CD1B209B28860013256B /* AppDelegate.swift */,
-				4178CD1D209B28860013256B /* ViewController.swift */,
-				4178CD1F209B28860013256B /* Main.storyboard */,
-				4178CD22209B28870013256B /* Assets.xcassets */,
-				4178CD24209B28870013256B /* LaunchScreen.storyboard */,
-				4178CD27209B28870013256B /* Info.plist */,
+				4178CD41209B2D7D0013256B /* FetchRequest */,
+				4178CD40209B29BF0013256B /* Model */,
+				4178CD3F209B29B50013256B /* Networking */,
+				4178CD3E209B29AE0013256B /* Extensions */,
+				4178CD3D209B29A10013256B /* Storyboards */,
+				4178CD3C209B29950013256B /* Source */,
+				4178CD3B209B298D0013256B /* Resources */,
 			);
 			path = SimpleApp;
 			sourceTree = "<group>";
@@ -94,6 +95,61 @@
 				4178CD32209B28870013256B /* Info.plist */,
 			);
 			path = SimpleAppTests;
+			sourceTree = "<group>";
+		};
+		4178CD3B209B298D0013256B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4178CD22209B28870013256B /* Images.xcassets */,
+				4178CD27209B28870013256B /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4178CD3C209B29950013256B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4178CD1B209B28860013256B /* AppDelegate.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		4178CD3D209B29A10013256B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4178CD1F209B28860013256B /* Main.storyboard */,
+				4178CD24209B28870013256B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4178CD3E209B29AE0013256B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4178CD3F209B29B50013256B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		4178CD40209B29BF0013256B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4178CD41209B2D7D0013256B /* FetchRequest */ = {
+			isa = PBXGroup;
+			children = (
+				4178CD1D209B28860013256B /* FetchRequestController.swift */,
+			);
+			path = FetchRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4178CD26209B28870013256B /* LaunchScreen.storyboard in Resources */,
-				4178CD23209B28870013256B /* Assets.xcassets in Resources */,
+				4178CD23209B28870013256B /* Images.xcassets in Resources */,
 				4178CD21209B28860013256B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4178CD1E209B28860013256B /* ViewController.swift in Sources */,
+				4178CD1E209B28860013256B /* FetchRequestController.swift in Sources */,
 				4178CD1C209B28860013256B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
