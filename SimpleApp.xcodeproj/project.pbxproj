@@ -16,6 +16,9 @@
 		4178CD31209B28870013256B /* SimpleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD30209B28870013256B /* SimpleAppTests.swift */; };
 		4178CD45209B31F50013256B /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD44209B31F50013256B /* Path.swift */; };
 		4178CD47209B32890013256B /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD46209B32890013256B /* Code.swift */; };
+		4178CD49209B34220013256B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD48209B34220013256B /* Endpoint.swift */; };
+		4178CD4D209B34380013256B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD4C209B34380013256B /* APIClient.swift */; };
+		4178CD4F209B35C70013256B /* SimpleAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD4E209B35C70013256B /* SimpleAppClient.swift */; };
 		733FEF32D1FFCB1B2260BE7E /* Pods_SimpleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20687EC7C18B2F53FE926107 /* Pods_SimpleAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		4178CD32209B28870013256B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4178CD44209B31F50013256B /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		4178CD46209B32890013256B /* Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		4178CD48209B34220013256B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		4178CD4C209B34380013256B /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		4178CD4E209B35C70013256B /* SimpleAppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAppClient.swift; sourceTree = "<group>"; };
 		6EADEF7D319C47A4D3761279 /* Pods_SimpleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7124B664CA06F48600975E71 /* Pods-SimpleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleAppTests/Pods-SimpleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8365E93140284F6ADEBDD4F5 /* Pods-SimpleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleApp/Pods-SimpleApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 		4178CD3F209B29B50013256B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				4178CD48209B34220013256B /* Endpoint.swift */,
+				4178CD4C209B34380013256B /* APIClient.swift */,
+				4178CD4E209B35C70013256B /* SimpleAppClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -408,10 +417,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4178CD4F209B35C70013256B /* SimpleAppClient.swift in Sources */,
+				4178CD4D209B34380013256B /* APIClient.swift in Sources */,
 				4178CD47209B32890013256B /* Code.swift in Sources */,
 				4178CD1E209B28860013256B /* FetchRequestController.swift in Sources */,
 				4178CD45209B31F50013256B /* Path.swift in Sources */,
 				4178CD1C209B28860013256B /* AppDelegate.swift in Sources */,
+				4178CD49209B34220013256B /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
