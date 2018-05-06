@@ -9,19 +9,13 @@
 import XCTest
 import RxSwift
 import RxTest
+
 @testable import SimpleApp
 
 class SimpleAppTests: XCTestCase {
     
-    private var client: SimpleAppClient!
-    private var disposeBag: DisposeBag!
-    
-    private var scheduler: TestScheduler!
-    private var testObserver: TestableObserver<String>!
-    
-    var path: Path? = nil
-    var code: Code? = nil
-    var error: APIError? = nil
+    private var client = SimpleAppClient()
+    private var disposeBag = DisposeBag()
     
     lazy var viewModel: FetchRequestViewModel = {
         return FetchRequestViewModel(client: self.client, disposeBag: self.disposeBag)
@@ -30,53 +24,71 @@ class SimpleAppTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        client = SimpleAppClient()
-        disposeBag = DisposeBag()
-        
-        scheduler = TestScheduler(initialClock: 0)
-        testObserver = scheduler.createObserver(String.self)
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
     
-    func testNextPath() {
-        let path = viewModel.path.map { path in
-            return path.next
+    func testFetchNextPath() {
+        viewModel.fetchNextPath()
+        
+        let expect = expectation(description: #function)
+        var path: String? = nil
+        
+        viewModel.path.asObservable().subscribe(onNext: {
+            path = $0.next
+            expect.fulfill()
+        }).disposed(by: self.disposeBag)
+        
+        waitForExpectations(timeout: 1.0) { error in
+            guard error == nil else {
+                XCTFail(error!.localizedDescription)
+                return
+            }
         }
         
         XCTAssertNotNil(path)
     }
     
     func testErrorOnInvalidNextPath() {
-        client.code(for: "code").subscribe { [unowned self] event in
-            switch event {
-            case .success(let code):
-                self.code = code
-                expect
-            case .error(let error):
-                let apiError = error as! APIError
-                self.error = apiError
-            }
-        }.disposed(by: disposeBag)
+        let expect = expectation(description: #function)
+        var errorString: String? = nil
+        
+        viewModel.fetchCode("a6f53f2b-5128-11e8-b520-d6002c990601")
+        viewModel.error.asObservable().subscribe(onNext: {
+            errorString = $0.localizedDescription
+            expect.fulfill()
+        }).disposed(by: self.disposeBag)
+        
+        waitForExpectations(timeout: 1.0)
+        XCTAssertNotNil(errorString)
+    }
     
+    func testValidResponseCode() {
+        let expect = expectation(description: #function)
+        var responseCode: String? = nil
+        var errorString: String? = nil
         
-        let pred = NSPredicate(format: "code != nil")
-        let exp = expectation(for: pred, evaluatedWith: self, handler: nil)
-        let res = XCTWaiter.wait(for: [exp], timeout: 5.0)
+        client.nextPath().flatMap {
+            self.client.code(for: $0.lastComponent())
+            }.subscribe(onSuccess: { (code) in
+                responseCode = code.response
+                expect.fulfill()
+            }) { (error) in
+                errorString = error.localizedDescription
+        }.disposed(by: self.disposeBag)
         
-        if res == XCTWaiter.Result.completed {
-            XCTAssertNotNil(code)
-        }
+        waitForExpectations(timeout: 1.0)
+        XCTAssertNotNil(responseCode)
+        XCTAssertNil(errorString)
     }
     
     func testLastComponentPathIsComputed() {
-        let path = Path(next: "http://localhost:8000/1246efe3-4f8a-11e8-8aa8-d6002c990601/")
+        let path = Path(next: "http://localhost:8000/1246efe3-4f8a-11e8-8aa8-d6002c990601/iamthelastpath/")
         let lastPath = path.lastComponent()
         
-        XCTAssertEqual(lastPath, "1246efe3-4f8a-11e8-8aa8-d6002c990601")
+        XCTAssertEqual(lastPath, "iamthelastpath")
     }
 }

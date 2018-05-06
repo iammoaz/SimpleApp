@@ -120,11 +120,10 @@
 		4178CD1A209B28860013256B /* SimpleApp */ = {
 			isa = PBXGroup;
 			children = (
-				4178CD41209B2D7D0013256B /* FetchRequest */,
-				4178CD40209B29BF0013256B /* Model */,
 				4178CD3F209B29B50013256B /* Networking */,
-				4178CD3E209B29AE0013256B /* Extensions */,
+				4178CD41209B2D7D0013256B /* FetchRequest */,
 				4178CD3D209B29A10013256B /* Storyboards */,
+				4178CD3E209B29AE0013256B /* Extensions */,
 				4178CD3C209B29950013256B /* Source */,
 				4178CD3B209B298D0013256B /* Resources */,
 			);
@@ -177,6 +176,7 @@
 		4178CD3F209B29B50013256B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				4178CD40209B29BF0013256B /* Model */,
 				4178CD48209B34220013256B /* Endpoint.swift */,
 				4178CD4C209B34380013256B /* APIClient.swift */,
 				4178CD4E209B35C70013256B /* SimpleAppClient.swift */,
