@@ -54,6 +54,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="fetchRequestButton" destination="flH-J8-s1d" id="nhf-yX-y1q"/>
+                        <outlet property="responseCodeLabel" destination="CG6-qu-5YY" id="RKW-Lb-PKc"/>
+                        <outlet property="timesFetchedLabel" destination="fCe-uW-JnQ" id="HPB-eF-RKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
