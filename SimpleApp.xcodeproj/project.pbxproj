@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		247DB07B209B523100DE000C /* SimpleAppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD4E209B35C70013256B /* SimpleAppClient.swift */; };
+		247DB07C209B523300DE000C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD4C209B34380013256B /* APIClient.swift */; };
+		247DB07D209B523600DE000C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD48209B34220013256B /* Endpoint.swift */; };
+		247DB07E209B523900DE000C /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD46209B32890013256B /* Code.swift */; };
+		247DB07F209B523B00DE000C /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD44209B31F50013256B /* Path.swift */; };
+		247DB080209B523E00DE000C /* FetchRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD50209B38490013256B /* FetchRequestViewModel.swift */; };
+		247DB081209B524200DE000C /* FetchRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1D209B28860013256B /* FetchRequestController.swift */; };
+		247DB082209B524700DE000C /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD52209B3A9A0013256B /* UIAlertController+Extensions.swift */; };
 		2D3DE44FA4C5BF693777F629 /* Pods_SimpleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EADEF7D319C47A4D3761279 /* Pods_SimpleApp.framework */; };
 		4178CD1C209B28860013256B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1B209B28860013256B /* AppDelegate.swift */; };
 		4178CD1E209B28860013256B /* FetchRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4178CD1D209B28860013256B /* FetchRequestController.swift */; };
@@ -439,7 +447,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				247DB07B209B523100DE000C /* SimpleAppClient.swift in Sources */,
+				247DB080209B523E00DE000C /* FetchRequestViewModel.swift in Sources */,
 				4178CD31209B28870013256B /* SimpleAppTests.swift in Sources */,
+				247DB07D209B523600DE000C /* Endpoint.swift in Sources */,
+				247DB07C209B523300DE000C /* APIClient.swift in Sources */,
+				247DB07F209B523B00DE000C /* Path.swift in Sources */,
+				247DB081209B524200DE000C /* FetchRequestController.swift in Sources */,
+				247DB082209B524700DE000C /* UIAlertController+Extensions.swift in Sources */,
+				247DB07E209B523900DE000C /* Code.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

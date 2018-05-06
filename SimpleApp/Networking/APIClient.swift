@@ -15,6 +15,7 @@ enum APIError: Error {
     case invalidData
     case responseUnsuccessful
     case jsonParsingFailure
+    case message(error: String)
     
     var localizedDescription: String {
         switch self {
@@ -28,6 +29,8 @@ enum APIError: Error {
             return "JSON Parsing Failure"
         case .jsonConversionFailure:
             return "JSON Conversion Failure"
+        case .message(let error):
+            return error
         }
     }
 }
@@ -48,14 +51,25 @@ extension APIClient {
                 return
             }
             
-            if httpResponse.statusCode == 200 {
-                if let data = data {
-                    completion(data, nil)
-                } else {
-                    completion(nil, .invalidData)
+            guard let data = data else {
+                completion(nil, .invalidData)
+                return
+            }
+            
+            switch httpResponse.statusCode {
+            case 200:
+                completion(data, nil)
+                
+            case 400:
+                do {
+                    let jsonError = try JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
+                    let errorMessage = jsonError["error"] as String?
+                    completion(nil, .message(error: errorMessage!))
+                } catch {
+                    completion(nil, .jsonParsingFailure)
                 }
                 
-            } else {
+            default:
                 completion(nil, .responseUnsuccessful)
             }
         }
@@ -67,7 +81,7 @@ extension APIClient {
         return Single<T>.create { single in
             let task = self.dataTask(with: endpoint.request) { (data, error) in
                 guard let data = data else {
-                    single(.error(APIError.invalidData))
+                    single(.error(APIError.message(error: error!.localizedDescription)))
                     return
                 }
                 
