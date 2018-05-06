@@ -18,38 +18,51 @@ class FetchRequestController: UIViewController {
 
     private (set) var client = SimpleAppClient()
     private (set) var disposeBag = DisposeBag()
-    
     private (set) var nextPath: String?
     
-    lazy var viewModel: FetchRequestViewModel = {
+    private lazy var viewModel: FetchRequestViewModel = {
         return FetchRequestViewModel(client: client, disposeBag: disposeBag)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        toggleButton(nextPath: nil)
+        fetchRequestButton.isEnabled = false
         bindElementsToViewModel()
     }
     
     func bindElementsToViewModel() {
-        fetchNextPath()
-        fetchCode()
-        incrementLabel()
+        bindNextPath()
+        bindResponseCodeLabel()
+        bindTimesFetchedLabel()
         handleButtonTap()
         handleError()
     }
     
     func handleButtonTap() {
         fetchRequestButton.rx.tap
-            .debounce(0.2, scheduler: MainScheduler.instance)
+            .debounce(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in
                 guard let nextPath = self.nextPath else { return }
                 self.viewModel.fetchCode(nextPath)
             }).disposed(by: disposeBag)
     }
+}
+
+extension FetchRequestController {
+    func bindNextPath() {
+        viewModel.fetchNextPath()
+        viewModel.path
+            .map { $0.lastComponent() }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(onNext: { [unowned self] path in
+                self.nextPath = path
+                self.fetchRequestButton.isEnabled = (path != nil) ? true : false
+            })
+            .disposed(by: self.disposeBag)
+    }
     
-    func incrementLabel() {
+    func bindTimesFetchedLabel() {
         viewModel.count
             .asDriver(onErrorJustReturn: 0)
             .distinctUntilChanged()
@@ -58,28 +71,12 @@ class FetchRequestController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func fetchCode() {
+    func bindResponseCodeLabel() {
         viewModel.code
             .map { "Response Code \($0.response)" }
             .asDriver(onErrorJustReturn: "Response Code: Error")
             .drive(responseCodeLabel.rx.text)
             .disposed(by: disposeBag)
-    }
-    
-    func fetchNextPath() {
-        viewModel.path
-            .map { $0.lastComponent() }
-            .asDriver(onErrorJustReturn: nil)
-            .map {
-                self.nextPath = $0
-                self.toggleButton(nextPath: $0)
-            }
-            .drive()
-            .disposed(by: self.disposeBag)
-    }
-    
-    func toggleButton(nextPath: String?) {
-        fetchRequestButton.isEnabled = (nextPath != nil) ? true : false
     }
     
     func handleError() {

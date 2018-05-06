@@ -19,26 +19,25 @@ class FetchRequestViewModel {
     private (set) var countObject = Variable<Int>(0)
     private (set) var errorSubject = PublishSubject<APIError>()
     
-    var path: Observable<Path> {
+    lazy var path: Observable<Path> = {
         return self.pathSubject.asObservable()
-    }
+    }()
     
-    var code: Observable<Code> {
+    lazy var code: Observable<Code> = {
         return self.codeSubject.asObservable()
-    }
+    }()
     
-    var count: Observable<Int> {
+    lazy var count: Observable<Int> = {
         return self.countObject.asObservable()
-    }
+    }()
     
-    var error: Observable<APIError> {
+    lazy var error: Observable<APIError> = {
         return self.errorSubject.asObservable()
-    }
+    }()
     
     init(client: SimpleAppClient, disposeBag: DisposeBag) {
         self.client = client
         self.disposeBag = disposeBag
-        fetchNextPath()
     }
     
     func fetchNextPath() {
@@ -55,7 +54,7 @@ class FetchRequestViewModel {
     }
     
     func fetchCode(_ code: String) {
-        client.code(for: code).observeOn(MainScheduler.instance).subscribe { [unowned self] (event) in
+        client.code(for: code).subscribe { [unowned self] event in
             switch event {
             case .success(let code):
                 self.codeSubject.onNext(code)
